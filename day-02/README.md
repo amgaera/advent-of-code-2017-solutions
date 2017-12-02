@@ -1,0 +1,1 @@
+Solutions to the problem _Corruption Checksum_ from day 2.
