@@ -1,0 +1,1 @@
+Solutions to the problem _Spiral Memory_ from day 3.
