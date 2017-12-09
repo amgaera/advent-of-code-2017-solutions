@@ -4,19 +4,27 @@ open Xunit
 
 
 [<Fact>]
-let ``The passphrase 'aa bb cc dd ee' is valid`` () =
-    Assert.True (Solution.isPassphraseValid "aa bb cc dd ee")
+let ``The passphrase 'abcde fghij' is valid`` () =
+    Assert.True (Solution.isPassphraseValid "abcde fghij")
 
 [<Fact>]
-let ``The passphrase 'aa bb cc dd aa' is not valid`` () =
-    Assert.False (Solution.isPassphraseValid "aa bb cc dd aa")
+let ``The passphrase 'abcde xyz ecdab' is not valid`` () =
+    Assert.False (Solution.isPassphraseValid "abcde xyz ecdab")
 
 [<Fact>]
-let ``The passphrase 'aa bb cc dd aaa' is valid`` () =
-    Assert.True (Solution.isPassphraseValid "aa bb cc dd aaa")
+let ``The passphrase 'a ab abc abd abf abj' is valid`` () =
+    Assert.True (Solution.isPassphraseValid "a ab abc abd abf abj")
 
 [<Fact>]
-let ``466 out of my 512 advent passphrases are valid`` () =
+let ``The passphrase 'iiii oiii ooii oooi oooo' is valid`` () =
+    Assert.True (Solution.isPassphraseValid "iiii oiii ooii oooi oooo")
+
+[<Fact>]
+let ``The passphrase 'oiii ioii iioi iiio' is not valid`` () =
+    Assert.False (Solution.isPassphraseValid "oiii ioii iioi iiio")
+
+[<Fact>]
+let ``251 out of my 512 advent passphrases are valid`` () =
     let passphrases =
         [| "pphsv ojtou brvhsj cer ntfhlra udeh ccgtyzc zoyzmh jum lugbnk";
            "vxjnf fzqitnj uyfck blnl impo kxoow nngd worcm bdesehw";
@@ -531,4 +539,4 @@ let ``466 out of my 512 advent passphrases are valid`` () =
            "spjb xkkak anuvk ejoklh nyerw bsjp zxuq vcwitnd xxtjmjg zfgq xkpf";
            "juo pmiyoh xxk myphio ogfyf dovlmwm moevao qqxidn"; |]
 
-    Assert.Equal (466, Solution.countValidPassphrases passphrases)
+    Assert.Equal (251, Solution.countValidPassphrases passphrases)
