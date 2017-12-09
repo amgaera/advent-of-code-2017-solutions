@@ -1,0 +1,1 @@
+Solutions to the problem _High-Entropy Passphrases_ from day 4.
