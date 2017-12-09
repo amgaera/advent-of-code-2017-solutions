@@ -31,9 +31,27 @@ let private getAddressCartesianCoordinates address =
     | 3 -> (1 - bandInfo.Number + offset, -bandInfo.Number)
     | _ -> failwithf "Unexpected side number: %d" side
 
-let computeAccessPortDistance (address : int) =
-    if address = 1 then
-        0
-    else
-        let x, y = address |> getAddressCartesianCoordinates
-        abs x + abs y
+let private getAdjacentCoordinates x y =
+    seq { for dx in -1 .. 1 do
+              for dy in -1 .. 1 do
+                  if dx <> 0 || dy <> 0 then yield dx, dy }
+    |> Seq.map (fun (dx, dy) -> x + dx, y + dy)
+
+let private getValueAtAddress (values : Map<int * int, int>, _) address =
+    let addressCoordinates = getAddressCartesianCoordinates address
+    let addressValue =
+        addressCoordinates
+        ||> getAdjacentCoordinates
+        |> Seq.choose (fun coordinates -> Map.tryFind coordinates values)
+        |> Seq.sum
+
+    Map.add addressCoordinates addressValue values, addressValue
+
+let getFirstValueGreaterThan (value : int) =
+    let seedValues = Map.ofArray [| (0, 0), 1 |]
+
+    Seq.initInfinite id
+    |> Seq.skip 2
+    |> Seq.scan getValueAtAddress (seedValues, 1)
+    |> Seq.find (fun (_, lastValue) -> lastValue > value)
+    |> snd
