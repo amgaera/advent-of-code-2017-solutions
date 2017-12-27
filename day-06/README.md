@@ -1,0 +1,1 @@
+Solutions to the problem _Memory Reallocation_ from day 6.
