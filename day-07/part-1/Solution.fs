@@ -4,7 +4,7 @@ open System
 open System.Text.RegularExpressions
 
 
-type ProgramInfo =
+type private ProgramInfo =
     { Name : string
       Weight : uint32
       SupportedProgramNames : string array }

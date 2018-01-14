@@ -4,7 +4,7 @@ open Xunit
 
 
 [<Fact>]
-let ``The bottom program in the example program list is 'tknk'`` () =
+let ``The program with new weight in the example program list is 'ugml'`` () =
     let programList = 
         [ "pbga (66)";
           "xhth (57)";
@@ -20,10 +20,10 @@ let ``The bottom program in the example program list is 'tknk'`` () =
           "gyxo (61)";
           "cntj (57)" ]
 
-    Assert.Equal ("tknk", Solution.getBottomProgram programList)
+    Assert.Equal (("ugml", 60u), Solution.getProgramWithNewWeight programList)
 
 [<Fact>]
-let ``The bottom program in my advent program list is 'mwzaxaj'`` () =
+let ``The program with new weight in my advent program list is 'vrgxe'`` () =
     let programList = 
         [| "yvpwz (50)";
            "vfosh (261) -> aziwd, tubze, dhjrv";
@@ -1219,4 +1219,4 @@ let ``The bottom program in my advent program list is 'mwzaxaj'`` () =
            "jaoiiae (81)";
            "pucsbv (39)" |]
 
-    Assert.Equal ("mwzaxaj", Solution.getBottomProgram programList)
+    Assert.Equal (("vrgxe", 1219u), Solution.getProgramWithNewWeight programList)
